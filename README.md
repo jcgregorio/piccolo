@@ -6,4 +6,4 @@ Flat file web publishing in Go.
 Installation
 ------------
 
-    go install github.com/jcgregorio/piccolo
+    go get github.com/jcgregorio/piccolo
