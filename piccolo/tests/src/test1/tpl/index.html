@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{sitetitle|html}</title>
+    {header}
+  </head>
+  <body>
+    {titlebar}
+    {.repeated section entries}
+    <div class=item>
+     <h2><a href="{uri}">{title|html}</a></h2>
+     {body}
+     <p class=permalink>{created}</p>
+    </div>
+    {.end}
+    {footer}
+  </body>
+</html>

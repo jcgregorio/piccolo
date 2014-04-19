@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+   <title type="text">{sitetitle}</title>
+   <link href="{domain}" />
+   <updated>{updated}</updated>
+   <author>
+      <name>Joe Gregorio</name>
+   </author>
+   <id>{domain}</id>
+   {.repeated section entries}
+   <entry>
+     <title>{title}</title>
+     <link href="{uri}" />
+     <id>{uri}</id>
+     <updated>{created}</updated>
+     <content type="html">{body|html}</content>
+   </entry>
+   {.end}
+</feed>

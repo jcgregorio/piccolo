@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{sitetitle|html} | Archives</title>
+    {header}
+  </head>
+  <body>
+    {titlebar}
+    <h2>Archives</h2>
+    <table>
+    {.repeated section entries}
+        <tr> <td>{created|datediff}</td> <td>{title}</td> </tr>
+    {.end}
+    </table>
+    {footer}
+  </body>
+</html>
