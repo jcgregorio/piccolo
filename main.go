@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/jcgregorio/piccolo/piccolo"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -127,6 +128,29 @@ func Expand(d *piccolo.DocSet, t *template.Template, data interface{}, path stri
 	return nil
 }
 
+// SimpleInclude loads the include file given the docset d.
+//
+func SimpleInclude(d *piccolo.DocSet, filename string) (string, time.Time, error) {
+	fullname := filepath.Join(d.Root, filename)
+
+	f, err := os.Open(fullname)
+	if err != nil {
+		return "", time.Time{}, err
+	}
+	defer f.Close()
+
+	stat, err := f.Stat()
+	if err != nil {
+		return "", time.Time{}, err
+	}
+	t := stat.ModTime()
+	b, err := ioutil.ReadAll(f)
+	if err != nil {
+		return "", time.Time{}, err
+	}
+	return string(b), t, nil
+}
+
 // Include loads the include file given the docset d.
 //
 // Returns the extracted HTML and the time the file was last modified.
@@ -223,6 +247,7 @@ type TemplateData struct {
 
 	SiteTitle string
 	Header    string
+	InlineCSS string
 	Titlebar  string
 	Footer    string
 	Entries   []*Entry
@@ -260,18 +285,20 @@ func main() {
 	templates := loadTemplates(d)
 
 	headerStr, headerMod := incMust(Include(d, "header.html", "head"))
+	inlineCss, inlineCssMod := incMust(SimpleInclude(d, "css/b.css"))
 	footerStr, footerMod := incMust(Include(d, "footer.html", "body"))
 	titlebarStr, titlebarMod := incMust(Include(d, "titlebar.html", "body"))
 
 	entryMod := modifiedTime(filepath.Join(d.Root, "tpl", "entry.html"))
 
-	incMod := Newest(headerMod, footerMod, titlebarMod, entryMod)
+	incMod := Newest(headerMod, inlineCssMod, footerMod, titlebarMod, entryMod)
 
 	oneentry := make([]*Entry, 1)
 	data := &TemplateData{
 		Domain:    DOMAIN,
 		SiteTitle: SITE_TITLE,
 		Header:    headerStr,
+		InlineCSS: string(inlineCss),
 		Titlebar:  titlebarStr,
 		Footer:    footerStr,
 		Entries:   oneentry,
