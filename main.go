@@ -2,9 +2,7 @@ package main
 
 import (
 	"bytes"
-	"code.google.com/p/go.net/html"
 	"fmt"
-	"github.com/jcgregorio/piccolo/piccolo"
 	"io"
 	"io/ioutil"
 	"log"
@@ -13,6 +11,9 @@ import (
 	"sort"
 	"text/template"
 	"time"
+
+	"github.com/jcgregorio/piccolo/piccolo"
+	"golang.org/x/net/html"
 )
 
 const (

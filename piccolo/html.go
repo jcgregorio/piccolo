@@ -1,10 +1,11 @@
 package piccolo
 
 import (
-	"code.google.com/p/go.net/html"
 	"fmt"
 	"os"
 	"time"
+
+	"golang.org/x/net/html"
 )
 
 const format = "2006-01-02T15:04:05-07:00"
