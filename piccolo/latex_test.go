@@ -30,6 +30,7 @@ func TestLaTex(t *testing.T) {
 		assert.NoError(t, err)
 		buf := bytes.NewBuffer([]byte{})
 		html.Render(buf, fi.Node)
-		fmt.Printf("%s", buf.String())
+		fmt.Printf("converted:", buf.String())
+		assert.Contains(t, buf.String(), "<img src=\"data:image/png;base64,")
 	}
 }

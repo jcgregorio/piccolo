@@ -328,6 +328,9 @@ func main() {
 				if err != nil {
 					return err
 				}
+				if err := piccolo.LaTex(fileinfo.Node); err != nil {
+					fmt.Printf("Error: expanding LaTex: %s", err)
+				}
 				url, err := d.URL(path)
 				if err != nil {
 					return err
@@ -394,6 +397,9 @@ func main() {
 	latest := entries[:FEED_LEN]
 	for _, e := range latest {
 		fi, _ := piccolo.CreationDateSaved(e.Path)
+		if err := piccolo.LaTex(fi.Node); err != nil {
+			fmt.Printf("Error: expanding LaTex: %s", err)
+		}
 		e.Body = StrFromNodes(fi.Body())
 	}
 	data.Entries = latest
