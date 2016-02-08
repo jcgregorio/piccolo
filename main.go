@@ -383,7 +383,7 @@ func main() {
 	sort.Sort(EntryByCreated(entries))
 	data.Entries = entries
 
-	// TODO(jcgregorio) This is actually wrong, need to sort by Upated first.
+	// TODO(jcgregorio) This is actually wrong, need to sort by Updated first, as if anyone cares.
 	data.Updated = entries[0].Updated
 
 	if err := Expand(d, templates.ArchiveHTML, data, filepath.Join(d.Archive, "index.html")); err != nil {
