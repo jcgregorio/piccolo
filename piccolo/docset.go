@@ -195,6 +195,7 @@ func (a *DocSet) setKnownAttr() {
 	a.cache[filepath.Join(a.Root, "tmp")] = IGNORE
 	a.cache[filepath.Join(a.Root, "tpl")] = IGNORE
 	a.cache[filepath.Join(a.Root, "inc")] = IGNORE
+	a.cache[filepath.Join(a.Root, ".git")] = IGNORE
 }
 
 // NewDocSet creates a new DocSet.
