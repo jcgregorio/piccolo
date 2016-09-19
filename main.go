@@ -18,8 +18,8 @@ import (
 
 const (
 	SITE_TITLE = "BitWorking"
-	DOMAIN     = "http://bitworking.org/"
-	FEED_LEN   = 10
+	DOMAIN     = "https://bitworking.org/"
+	FEED_LEN   = 4
 )
 
 var shortMonths = [...]string{
