@@ -26,7 +26,7 @@ func TestLaTex(t *testing.T) {
 	for _, tc := range testCases {
 		path := filepath.Join(cwd, "tests", "src", tc.Filename)
 		fi, _, _ := CreationDate(path)
-		err := LaTex(fi.Node)
+		err := LaTex(fi.Node, ".")
 		assert.NoError(t, err)
 		buf := bytes.NewBuffer([]byte{})
 		html.Render(buf, fi.Node)

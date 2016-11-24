@@ -15,7 +15,7 @@ import (
 
 // LaTex finds <latex-pic> nodes in the html and
 // replaces them with PNG images of the rendered LaTex.
-func LaTex(node *html.Node) error {
+func LaTex(node *html.Node, root string) error {
 	latexNodes := []*html.Node{}
 	var f func(*html.Node) error
 	f = func(n *html.Node) error {
@@ -41,7 +41,7 @@ func LaTex(node *html.Node) error {
 			// Convert the latex to a PNG with:
 			//
 			//   tex2im  -z -a -o ./dst/test.png test.tex
-			args := fmt.Sprintf("-z -a -o %s %s", dest.Name(), file.Name())
+			args := fmt.Sprintf("-z -a -x %s/tex2im_header -o %s %s", root, dest.Name(), file.Name())
 			output := bytes.Buffer{}
 			err = exec.Run(&exec.Command{
 				Name:           "tex2im",
