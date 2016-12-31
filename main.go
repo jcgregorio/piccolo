@@ -286,7 +286,7 @@ func main() {
 	templates := loadTemplates(d)
 
 	headerStr, headerMod := incMust(Include(d, "header.html", "head"))
-	inlineCss, inlineCssMod := incMust(SimpleInclude(d, "css/b.css"))
+	inlineCss, inlineCssMod := incMust(SimpleInclude(d, "out/prefixed.css"))
 	footerStr, footerMod := incMust(Include(d, "footer.html", "body"))
 	titlebarStr, titlebarMod := incMust(Include(d, "titlebar.html", "body"))
 
